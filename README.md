@@ -42,7 +42,7 @@ timeout set 1 min
 
 name: schedule-sg-road-alert
 
-cron(*/5 * * * ? *)
+cron(*/1 * * * ? *)
 
 **ssm**
 
