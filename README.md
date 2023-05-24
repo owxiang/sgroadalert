@@ -16,29 +16,27 @@ create lambda_function.py and paste the code in
 
 zip the files to lambda_function.zip and standby to upload to lambda
 
-**create dynamodb**
-
-name: sgroadalert-lastupdate
-
-attributes below:
-
-id: last_update in string, literally last_update
-
-description: any string 
-
-timestamp: any string 
-
 **create lambda**
 
 name: sgroadalert
 
 upload lambda_function.zip
 
-add Execution role AmazonDynamoDBFullAccess and AmazonSSMReadOnlyAccess
+add Execution role AmazonSSMReadOnlyAccess
 
-timeout set 1 min
+timeout set 30s
 
 note: 128mb, average 3000ms, runs every minute and we are still within free tier!
+
+**create environment in lambda**
+
+key:
+
+description: any 
+
+timestamp: any 
+
+emoji: any
 
 **create eventBridge**
 
