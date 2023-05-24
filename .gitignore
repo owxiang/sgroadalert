@@ -1,0 +1,5 @@
+# Ignore all pip packages
+**/site-packages/
+
+# Ignore environment files
+.env
