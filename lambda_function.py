@@ -2,13 +2,11 @@ import boto3
 import requests
 from bs4 import BeautifulSoup
 import emoji
+import os
+
 
 # init website
 WEBSITE_URL = "https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/traffic_information/traffic_updates_and_road_closures.html"
-
-# init dynamodb
-dynamodb = boto3.client('dynamodb')
-LAST_UPDATE_TABLE_NAME = "sgroadalert-lastupdate"
 
 # init ssm for telegram
 ssm = boto3.client('ssm')
@@ -81,37 +79,25 @@ def fetch_traffic_update():
 
 
 def fetch_last_update():
-    response = dynamodb.get_item(
-        TableName=LAST_UPDATE_TABLE_NAME,
-        Key={'id': {'S': 'last_update'}}
-    )
-    item = response.get('Item')
+    description = os.environ.get('description', '')
+    emoji = os.environ.get('emoji', '')
+    timestamp = os.environ.get('timestamp', '')
 
-    if item:
-        description = item.get('description', {}).get('S', '')
-        # Extract the first character as the emoji code
-        emoji = description[0] if len(description) > 0 else ''
-        # Remove the emoji code and any leading/trailing spaces from the description
-        description = description[1:].strip()
-        timestamp = item.get('timestamp', {}).get('S', '')
+    if description:
         return {'emoji': emoji, 'description': description, 'timestamp': timestamp}
 
     return None
 
 
 def update_last_update(update):
-    # Update last update in DynamoDB
-    # Get the emoji value from the update dictionary, or use an empty string if not present
+    # Update environment variables with the last update information
     emoji = update.get('emoji', '')
-    dynamodb.put_item(
-        TableName=LAST_UPDATE_TABLE_NAME,
-        Item={
-            'id': {'S': 'last_update'},
-            # Include the emoji in the description
-            'description': {'S': emoji + update['description']},
-            'timestamp': {'S': update['timestamp']}
-        }
-    )
+    description = update.get('description', '')
+    timestamp = update.get('timestamp', '')
+
+    os.environ['emoji'] = emoji
+    os.environ['description'] = description
+    os.environ['timestamp'] = timestamp
 
 
 def send_telegram_message(update):
