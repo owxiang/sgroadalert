@@ -38,6 +38,8 @@ add Execution role AmazonDynamoDBFullAccess and AmazonSSMReadOnlyAccess
 
 timeout set 1 min
 
+note: 128mb, average 3000ms, runs every minute and we are still within free tier!
+
 **create eventBridge**
 
 name: schedule-sg-road-alert
