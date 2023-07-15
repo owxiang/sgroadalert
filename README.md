@@ -2,7 +2,7 @@ im lazy to write documentation for this repo
 
 aspect: monitoring, change detection and alert
 
-[telegram channel](https://t.me/RoadAlertSG)
+[telegram channel](https://t.me/TrafficAlertSG)
 
 [website](https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/traffic_information/traffic_updates_and_road_closures.html#traffic-updates)
 
