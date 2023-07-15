@@ -51,8 +51,7 @@ Python 3.7 and AWS serverless services.
    - `emoji : any`
 
 #### Costing
-- Duration: 3561.48 ms
-- Billed Duration: 3562 ms
+- Duration (Average): 3500.00 ms
 - Memory Size: 128 MB
 - Triggers every minute
   
