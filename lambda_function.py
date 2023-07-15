@@ -3,10 +3,11 @@ import requests
 from bs4 import BeautifulSoup
 import emoji
 import os
-
+import time
 
 # init website
 WEBSITE_URL = "https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/traffic_information/traffic_updates_and_road_closures.html"
+
 
 # init ssm for telegram
 ssm = boto3.client('ssm')
@@ -27,11 +28,13 @@ def lambda_handler(event, context):
     print(last_update)
 
     # Fetch current traffic update
-    current_update = fetch_traffic_update()
+    current_update = fetch_current_update()
     print(current_update)
 
     # Compare current and last updates
-    if current_update != last_update:
+    if current_update is not None and current_update != last_update:
+        
+        print(f"current and last update is different. sending newest update")
         # Update last checked update
         update_last_update(current_update)
 
@@ -44,8 +47,10 @@ def lambda_handler(event, context):
     }
 
 
-def fetch_traffic_update():
-    response = requests.get(WEBSITE_URL)
+def fetch_current_update():
+    # cache-busting techniques to counter caching mechanism
+    url_with_timestamp = f"{WEBSITE_URL}?timestamp={int(time.time())}"
+    response = requests.get(url_with_timestamp)
     html_content = response.text
 
     # Parse HTML and extract traffic update
@@ -125,5 +130,5 @@ def send_telegram_message(update):
     requests.get(
         f"https://api.telegram.org/{BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_CHAT_ID}&text="
         + f"{message}"
-        + "&parse_mode=markdown&disable_web_page_preview=True"
+        + "&parse_mode=markdown&disable_web_page_preview=False"
     )
