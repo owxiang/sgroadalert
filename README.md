@@ -16,7 +16,7 @@ The application performs traffic alert to desired Telegram channel every minute.
 
 Python 3.7 and AWS serverless services.
 
-### Cloud Architect (trying out Mermaid hehe)
+### Cloud Architect (trying out Mermaid heh)
 
 ```mermaid
   graph TD;
@@ -27,14 +27,11 @@ Python 3.7 and AWS serverless services.
 ```
 
 ### Python Packages
+`pip install -r requirements.txt --target . --no-user`
 
-`pip install beautifulsoup4 --target . --no-user`
+1. Create `lambda_function.py`
 
-`pip install emoji --target . --no-user`
-
-1. Create `lambda_function.py` and paste the code in
-
-2. Zip the files to `lambda_function.zip` to upload to Lambda later
+2. Zip the files to `lambda_function.zip` for uploading to AWS Lambda later on
    
 ### AWS Lambda
 
@@ -44,8 +41,9 @@ Python 3.7 and AWS serverless services.
 
 3. Add Execution role `AmazonSSMReadOnlyAccess`
 
-4. Set timeout to 30s
-5. Create Environment
+4. Increase timeout
+   
+6. Create Environment
    - `description : any`
    - `timestamp : any`
    - `emoji : any`
@@ -78,10 +76,9 @@ Max (-956200 monthly billable requests, 0 ) = 0.00 total monthly billable reques
 Lambda costs - With Free Tier (monthly): 0.00 USD
 ```
 
-### AWS EventBridge
+### AWS EventBridge Trigger
 
-1. Create EventBridge `schedule-sg-road-alert`
-2. Set `cron(*/1 * * * ? *)` for every minute.
+1. Set `cron(*/1 * * * ? *)` for every minute.
 
 ### AWS Systems Manager
 For Telegram Bot Token and Telegram Chat ID
