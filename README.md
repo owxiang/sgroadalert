@@ -5,7 +5,7 @@
 
 ## Description 
 
-The application performs traffic alert to desired Telegram channel every minute. 
+The solution performs traffic alert to desired Telegram channel every minute. 
 
 ### Aspect 
 - Monitoring
