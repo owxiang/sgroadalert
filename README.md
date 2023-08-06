@@ -1,5 +1,5 @@
 # Scheduled Traffic Alert to Telegram channel
-[Telegram Channel](https://t.me/TrafficAlertSG)
+[Telegram Channel](https://t.me/TrafficAlertSG) - paused at the moment.
 
 [Website](https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/traffic_information/traffic_updates_and_road_closures.html#traffic-updates)
 
