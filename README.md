@@ -16,7 +16,7 @@ The solution performs traffic alert to desired Telegram channel every minute.
 
 Python 3.7 and AWS serverless services.
 
-### Cloud Architect (trying out Mermaid heh)
+### Cloud Architect (trying Mermaid 🤪)
 
 ```mermaid
   graph TD;
@@ -27,9 +27,10 @@ Python 3.7 and AWS serverless services.
 ```
 
 ### Get started
-`pip install -r requirements.txt --target . --no-user`
 
-`touch lambda_function.py`
+`git clone https://github.com/owxiang/sgroadalert.git`
+
+`pip install -r requirements.txt --target . --no-user`
 
 `zip -r lambda_function.zip`
    
