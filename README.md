@@ -26,12 +26,12 @@ Python 3.7 and AWS serverless services.
       Lambda-->Telegram;
 ```
 
-### Python Packages
+### Get started
 `pip install -r requirements.txt --target . --no-user`
 
-1. Create `lambda_function.py`
+`touch lambda_function.py`
 
-2. Zip the files to `lambda_function.zip` for uploading to AWS Lambda later on
+`zip -r lambda_function.zip`
    
 ### AWS Lambda
 
@@ -39,7 +39,7 @@ Python 3.7 and AWS serverless services.
 
 2. Upload `lambda_function.zip`
 
-3. Add Execution role `AmazonSSMReadOnlyAccess`
+3. Add managed policy `AmazonSSMReadOnlyAccess` execution role
 
 4. Increase timeout
    
