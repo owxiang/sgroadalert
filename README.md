@@ -16,7 +16,7 @@ The solution performs traffic alert to desired Telegram channel every minute.
 
 Python 3.7 and AWS serverless services.
 
-### Cloud Architect (trying Mermaid 🤪)
+### Cloud Architect with Mermaid
 
 ```mermaid
   graph TD;
